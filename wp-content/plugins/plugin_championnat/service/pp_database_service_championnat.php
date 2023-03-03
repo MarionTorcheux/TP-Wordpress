@@ -1,6 +1,6 @@
 <?php
 
-class PP_database_service_adherent
+class PP_database_service_championnat
 {
     public function __construct()
     {
@@ -61,7 +61,7 @@ class PP_database_service_adherent
     public function empty_db()
     {
         global $wpdb;
-        $wpdb->query("TRUNCATE {$wpdb->prefix}pp_adherent;");
+        $wpdb->query("TRUNCATE {$wpdb->prefix}pp_championnat;");
     }
 
 
@@ -69,43 +69,39 @@ class PP_database_service_adherent
     public function delete_db()
     {
         global $wpdb;
-        $wpdb->query("DROP TABLE {$wpdb->prefix}pp_adherent;");
+        $wpdb->query("DROP TABLE {$wpdb->prefix}pp_championnat;");
     }
 
 
     //requete pour récuprérer la liste des clubs
-    public function findAllAdherents()
+    public function findAllChampionnats()
     {
         global $wpdb;
-        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_adherent.*, {$wpdb->prefix}pp_club.nom AS club FROM {$wpdb->prefix}pp_adherent INNER JOIN {$wpdb->prefix}pp_club ON {$wpdb->prefix}pp_adherent.club_ID = {$wpdb->prefix}pp_club.ID;");
+        $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}pp_championnat ;");
         return $result;
     }
 
-    public function save_adherent()
+    public function save_championnat()
     {
         global $wpdb;
         //on récupère les données envoyées par le formulaire
         $valeurs = [
             'nom' => $_POST['nom'],
-            'prenom' => $_POST['prenom'],
-            'email' => $_POST['email'],
-            'telephone' => $_POST['telephone'],
-            'adresse' => $_POST['adresse'],
-            'numero_adherent' => $_POST['numero_adherent'],
-            'club_ID' => $_POST['club_id'],
+            'categorie_championnat' => $_POST['categorie'],
+
 
         ];
 
         //on vérifie que le club n'existe pas dans la bdd
-        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_adherent WHERE email = '{$valeurs['email']}'; ");
+        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_championnat WHERE nom = '{$valeurs['nom']}'; ");
         if (is_null($row)) {
             // si l'adherent n'existe pas on peut l'insérer
-            $wpdb->insert("{$wpdb->prefix}pp_adherent", $valeurs);
+            $wpdb->insert("{$wpdb->prefix}pp_championnat", $valeurs);
         }
     }
 
     // requete pour supprimer un club
-    public function delete_adherent($ids)
+    public function delete_championnat($ids)
     {
 
 
@@ -117,14 +113,14 @@ class PP_database_service_adherent
             $ids = (array)$ids;
         }
         // requete de suppression
-        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_adherent WHERE ID IN (" . implode(',', $ids) . ");");
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_championnat WHERE ID IN (" . implode(',', $ids) . ");");
 
     }
 
 
 
 
-    public function update_adherent($ids)
+    public function update_championnat($ids)
     {
         global $wpdb;
         echo "koukoukouk";

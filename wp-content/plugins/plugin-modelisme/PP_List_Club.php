@@ -112,9 +112,10 @@ class PP_List_Club extends WP_List_Table
            case 'email' :
            case 'telephone' :
            case 'domaine' :
-           case 'is_championnat' :
                return $item->$column_name;
                break;
+           case 'is_championnat' :
+              return $item->$column_name == 0 ? "non" : "oui";
            default :
                return print_r($item, true);
        }

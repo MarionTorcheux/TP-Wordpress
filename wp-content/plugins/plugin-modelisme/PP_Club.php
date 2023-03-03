@@ -16,6 +16,22 @@ require_once plugin_dir_path(__FILE__) . "/PP_List_Club.php";
 class PP_Club
 {
 
+
+    public function __construct()
+    {
+        // à l'activation du plugin : création des tables dans la bdd
+        register_activation_hook(__FILE__, array('pp_database_service', 'create_db'));
+        // à la desactivation du plugin, on vide les tables
+        register_deactivation_hook(__FILE__, array('pp_database_service', 'empty_db'));
+        // à la supression du plugin, on supprime la table
+        // register_uninstall_hook(__FILE__,array('pp_database_service', 'delete_db'));
+
+
+        // enregistrement du nouveau menu
+        add_action('admin_menu', array($this, 'add_menu_club'));
+
+    }
+
     //creation du menu client dans le bo
     public function add_menu_club()
     {
@@ -137,20 +153,7 @@ class PP_Club
     }
 
 
-    public function __construct()
-    {
-        // à l'activation du plugin : création des tables dans la bdd
-        register_activation_hook(__FILE__, array('pp_database_service', 'create_db'));
-        // à la desactivation du plugin, on vide les tables
-        register_deactivation_hook(__FILE__, array('pp_database_service', 'empty_db'));
-        // à la supression du plugin, on supprime la table
-        // register_uninstall_hook(__FILE__,array('pp_database_service', 'delete_db'));
 
-
-        // enregistrement du nouveau menu
-        add_action('admin_menu', array($this, 'add_menu_club'));
-
-    }
 }
 
 new PP_Club(); // on instancie la classe

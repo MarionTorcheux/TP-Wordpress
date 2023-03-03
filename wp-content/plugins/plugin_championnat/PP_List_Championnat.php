@@ -8,20 +8,20 @@ if(!class_exists('WP_List_Table')){
 }
 
 // on importe notre class PP_database_service
-require_once plugin_dir_path(__FILE__) . '/service/pp_database_service_adherent.php';
+require_once plugin_dir_path(__FILE__) . '/service/pp_database_service_championnat.php';
 
-class PP_List_Adherent extends WP_List_Table
+class PP_List_Championnat extends WP_List_Table
 {
     private $dal;
     // on a surchargé le constructeur
     public function __construct($args = array())
     {
         parent::__construct([
-            'singular' => __('Adherent'),
-            'plural' => __('Adherents'),
+            'singular' => __('Championnat'),
+            'plural' => __('Championnats'),
         ]);
 
-        $this->dal = new PP_database_service_adherent();
+        $this->dal = new PP_database_service_championnat();
     }
 
     // on va préparer notre liste
@@ -38,7 +38,7 @@ class PP_List_Adherent extends WP_List_Table
         $currentPage = $this->get_pagenum(); // permet de savoir sur quelle page on est
 
         // on traite les données
-        $data = $this->dal->findAllAdherents(); // pour récupérer les infos de la bdd
+        $data = $this->dal->findAllChampionnats(); // pour récupérer les infos de la bdd
 
 
 
@@ -70,12 +70,8 @@ class PP_List_Adherent extends WP_List_Table
           'cb' => "<input type ='checkbox'/>",
           'ID' => 'id',
           'nom' => 'Nom',
-          'prenom' => 'Prénom',
-          'email' => 'Email',
-          'telephone' => 'Téléphone',
-          'adresse' => 'Adresse',
-          'numero_adherent' => 'N° Licence',
-          'club' => 'Club',
+          'categorie_championnat' => 'Catégorie',
+
       ];
 
       return $columns;
@@ -111,12 +107,7 @@ class PP_List_Adherent extends WP_List_Table
        switch ($column_name){
            case 'ID' :
            case 'nom' :
-           case 'prenom' :
-           case 'email' :
-           case 'telephone' :
-           case 'adresse' :
-           case 'numero_adherent' :
-           case 'club' :
+           case 'categorie_championnat' :
                return $item->$column_name;
                break;
            default :
@@ -130,7 +121,7 @@ class PP_List_Adherent extends WP_List_Table
         $sortable = [
             'ID' => array('ID',true),
             'nom' => array('nom',true),
-            'club' => array('club',true),
+            'categorie_championnat' => array('categorie_championnat',true),
         ];
         return $sortable;
 
@@ -145,7 +136,7 @@ class PP_List_Adherent extends WP_List_Table
 
             // retourner une checkbox pour chaque élément du tableau
         return sprintf(
-            "<input type='checkbox' name='delete-adherent[]' value='%s' />", $item['ID']
+            "<input type='checkbox' name='delete-championnat[]' value='%s' />", $item['ID']
         );
     }
 
