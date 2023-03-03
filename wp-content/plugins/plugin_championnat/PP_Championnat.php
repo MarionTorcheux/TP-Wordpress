@@ -31,7 +31,7 @@ class PP_Championnat
 
     }
     //creation du menu adherent dans le bo
-    public function add_menu_adherent()
+    public function add_menu_championnat()
     {
         add_menu_page(
             'Les championnats PP',
@@ -52,7 +52,7 @@ class PP_Championnat
             'Ajouter',
             'manage_options',
             'add-championnat',
-            array($this, "mes_championnat")
+            array($this, "mes_championnats")
         );
 
 

@@ -34,7 +34,7 @@ class PP_List_Championnat extends WP_List_Table
 
         // pagination
         // pour afficher un nbr de résultat par page
-        $perPage = $this->get_items_per_page('adherent_per_page', 10);
+        $perPage = $this->get_items_per_page('championnat_per_page', 10);
         $currentPage = $this->get_pagenum(); // permet de savoir sur quelle page on est
 
         // on traite les données
@@ -70,7 +70,7 @@ class PP_List_Championnat extends WP_List_Table
           'cb' => "<input type ='checkbox'/>",
           'ID' => 'id',
           'nom' => 'Nom',
-          'categorie_championnat' => 'Catégorie',
+          'libelle' => 'Catégorie',
 
       ];
 
@@ -107,7 +107,7 @@ class PP_List_Championnat extends WP_List_Table
        switch ($column_name){
            case 'ID' :
            case 'nom' :
-           case 'categorie_championnat' :
+           case 'libelle' :
                return $item->$column_name;
                break;
            default :
@@ -121,7 +121,7 @@ class PP_List_Championnat extends WP_List_Table
         $sortable = [
             'ID' => array('ID',true),
             'nom' => array('nom',true),
-            'categorie_championnat' => array('categorie_championnat',true),
+            'libelle' => array('libelle',true),
         ];
         return $sortable;
 
@@ -143,8 +143,8 @@ class PP_List_Championnat extends WP_List_Table
     public function get_bulk_actions()
     {
         return array(
-            'delete-adherent' => __('Delete'),
-            'update-adherent' => __('Update')
+            'delete-championnat' => __('Delete'),
+            'update-championnat' => __('Update')
         );
     }
 

@@ -77,7 +77,7 @@ class PP_database_service_championnat
     public function findAllChampionnats()
     {
         global $wpdb;
-        $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}pp_championnat ;");
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_championnat.*, {$wpdb->prefix}pp_categorie_championnat.libelle FROM {$wpdb->prefix}pp_championnat INNER JOIN {$wpdb->prefix}pp_categorie_championnat ON {$wpdb->prefix}pp_categorie_championnat.ID = {$wpdb->prefix}pp_championnat.categorie_championnat_ID;");
         return $result;
     }
 
