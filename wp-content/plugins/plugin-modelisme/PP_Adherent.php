@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Plugin projet pro championnat
+ * Plugin Name: Plugin projet pro adherent
  * Description: Mon super plugin
  * Author: PP Marion
  * Version: 0.0.1
@@ -8,12 +8,12 @@
 
 
 // on importe le fichier PP_database_service
-require_once plugin_dir_path(__FILE__) . "/service/pp_database_service_championnat.php";
+require_once plugin_dir_path(__FILE__) . "/service/pp_database_service.php";
 // on importe notre classe PP_List
-require_once plugin_dir_path(__FILE__) . "/PP_List_Championnat.php";
+require_once plugin_dir_path(__FILE__) . "/PP_List_Adherent.php";
 
 //création de la class du plugin
-class PP_Championnat
+class PP_Adherent
 {
 
     public function __construct()
@@ -27,65 +27,65 @@ class PP_Championnat
 
 
         // enregistrement du nouveau menu
-        add_action('admin_menu', array($this, 'add_menu_championnat'));
+        add_action('admin_menu', array($this, 'add_menu_adherent'));
 
     }
     //creation du menu adherent dans le bo
-    public function add_menu_championnat()
+    public function add_menu_adherent()
     {
         add_menu_page(
-            'Les championnats PP',
-            'Championnats PP',
+            'Les adhérents PP',
+            'Adhérents PP',
             'manage_options',
-            'championnat-pp',
+            'adherent-pp',
             //l'élément qu'on veut afficher dans la page (rendu)
-            array($this, "mes_championnats"),
-            'dashicons-buddicons-activity',
+            array($this, "mes_adherents"),
+            'dashicons-admin-users',
             40,
 
         );
 
         //ajouter un sous menu
         add_submenu_page(
-            'championnat-pp',
-            'Ajouter un championnat',
+            'adherent-pp',
+            'Ajouter un adhérent',
             'Ajouter',
             'manage_options',
-            'add-championnat',
-            array($this, "mes_championnats")
+            'add-adherent',
+            array($this, "mes_adherents")
         );
 
 
     }
 
     //on créee la méthode mes_adherents()
-    public function mes_championnats()
+    public function mes_adherents()
     {
         // on doit instancier la classe PP_database_service
-        $db = new PP_database_service_championnat();
+        $db = new PP_database_service_adherent();
         // on récupère le titre de la page
         echo "<h2> " . get_admin_page_title() . " </h2>";
 
-        if ($_REQUEST['page'] == 'championnat-pp' || $_POST['send'] == 'ok' || $_POST['action'] == 'delete-championnat') {
+        if ($_REQUEST['page'] == 'adherent-pp' || $_POST['send'] == 'ok' || $_POST['action'] == 'delete-adherent') {
             // on va mettre une seconde condition if
             // si on a bien les données du formulaire
             // on execute la requete d'insertion
             if (isset($_POST['send']) && $_POST['send'] == 'ok') {
-                $db->save_championnat();
+                $db->save_adherent();
             }
-            if (isset($_POST['action']) && $_POST['action'] == 'delete-championnat') {
+            if (isset($_POST['action']) && $_POST['action'] == 'delete-adherent') {
 
-                $db->delete_championnat($_POST['delete-adherent']);
-            }
-
-            if (isset($_POST['action']) && $_POST['action'] == 'update-championnat') {
-
-                $db->update_championnat($_POST['update-championnat']);
+                $db->delete_adherent($_POST['delete-adherent']);
             }
 
+            if (isset($_POST['action']) && $_POST['action'] == 'update-adherent') {
 
-            $table = new PP_List_championnat(); // on instancie la class
-            $table->prepare_items(); // on appelle la méthode prépare items
+                $db->update_adherent($_POST['update-adherent']);
+            }
+
+
+            $table = new PP_List_Adherent(); // on instancie la class
+            $table->prepare_items(); // on appelle la méthode préapre items
 
 
             echo "<form action='' method='POST'>";
@@ -107,9 +107,40 @@ class PP_Championnat
                 </div>
 
                 <div>
-                <label for="">Catégorie</label>
-                <input type="text" id="categorie" name="categorie" class="widefat" required>
+                <label for="">Prénom</label>
+                <input type="text" id="prenom" name="prenom" class="widefat" required>
                 </div>
+
+
+                <div>
+                    <label for="">email</label>
+                    <input type="text" id="email" name="email" class="widefat" required>
+                </div>
+
+
+                <div>
+                    <label for="">Téléphone</label>
+                    <input type="text" id="telephone" name="telephone" class="widefat" required>
+                </div>
+
+                <div>
+                    <label for="">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" class="widefat" required>
+                </div>
+
+
+                <div>
+                    <label for="">N°licence</label>
+                    <input type="text" id="numero_adherent" name="numero_adherent" class="widefat" required>
+                </div>
+
+
+                <div>
+                    <label for="">Club</label>
+                    <input type="text" id="club_id" name="club_id" class="widefat" required>
+                </div>
+
+
 
 
                 <div>
@@ -130,4 +161,4 @@ class PP_Championnat
 
 }
 
-new PP_championnat(); // on instancie la classe
+new PP_Adherent(); // on instancie la classe

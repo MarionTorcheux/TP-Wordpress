@@ -128,4 +128,122 @@ class PP_database_service
         // $wpdb->query("UPDATE {$wpdb->prefix}pp_club SET nom = '', prenom = '', email='', telephone='', fidelite =''");
     }
 
+
+
+
+    //requete pour récuprérer la liste des clubs
+    public function findAllAdherents()
+    {
+        global $wpdb;
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_adherent.*, {$wpdb->prefix}pp_club.nom AS club FROM {$wpdb->prefix}pp_adherent INNER JOIN {$wpdb->prefix}pp_club ON {$wpdb->prefix}pp_adherent.club_ID = {$wpdb->prefix}pp_club.ID;");
+        return $result;
+    }
+
+    public function save_adherent()
+    {
+        global $wpdb;
+        //on récupère les données envoyées par le formulaire
+        $valeurs = [
+            'nom' => $_POST['nom'],
+            'prenom' => $_POST['prenom'],
+            'email' => $_POST['email'],
+            'telephone' => $_POST['telephone'],
+            'adresse' => $_POST['adresse'],
+            'numero_adherent' => $_POST['numero_adherent'],
+            'club_ID' => $_POST['club_id'],
+
+        ];
+
+        //on vérifie que le club n'existe pas dans la bdd
+        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_adherent WHERE email = '{$valeurs['email']}'; ");
+        if (is_null($row)) {
+            // si l'adherent n'existe pas on peut l'insérer
+            $wpdb->insert("{$wpdb->prefix}pp_adherent", $valeurs);
+        }
+    }
+
+    // requete pour supprimer un club
+    public function delete_adherent($ids)
+    {
+
+
+        global $wpdb;
+        // on check si IDs sont dans un tableau sinon on le met dedans
+        // il veut que un tableau pour supprimer meme si y a qu'un id
+        // pour avoir la possibilité de supprimer plusieurs clients à la fois
+        if (!is_array($ids)) {
+            $ids = (array)$ids;
+        }
+        // requete de suppression
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_adherent WHERE ID IN (" . implode(',', $ids) . ");");
+
+    }
+
+
+
+
+    public function update_adherent($ids)
+    {
+        global $wpdb;
+        echo "koukoukouk";
+
+        // $wpdb->query("UPDATE {$wpdb->prefix}pp_club SET nom = '', prenom = '', email='', telephone='', fidelite =''");
+    }
+
+
+    //requete pour récuprérer la liste des clubs
+    public function findAllChampionnats()
+    {
+        global $wpdb;
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_championnat.*, {$wpdb->prefix}pp_categorie_championnat.libelle FROM {$wpdb->prefix}pp_championnat INNER JOIN {$wpdb->prefix}pp_categorie_championnat ON {$wpdb->prefix}pp_categorie_championnat.ID = {$wpdb->prefix}pp_championnat.categorie_championnat_ID;");
+        return $result;
+    }
+
+    public function save_championnat()
+    {
+        global $wpdb;
+        //on récupère les données envoyées par le formulaire
+        $valeurs = [
+            'nom' => $_POST['nom'],
+            'categorie_championnat_ID' => $_POST['categorie'],
+
+        ];
+
+        var_dump($_POST['categorie']);
+
+        //on vérifie que le championnat n'existe pas dans la bdd
+        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_championnat WHERE nom = '{$valeurs['nom']}'; ");
+        if (is_null($row)) {
+            // si le championnat n'existe pas on peut l'insérer
+            $wpdb->insert("{$wpdb->prefix}pp_championnat", $valeurs);
+        }
+    }
+
+    // requete pour supprimer un club
+    public function delete_championnat($ids)
+    {
+
+
+        global $wpdb;
+        // on check si IDs sont dans un tableau sinon on le met dedans
+        // il veut que un tableau pour supprimer meme si y a qu'un id
+        // pour avoir la possibilité de supprimer plusieurs clients à la fois
+        if (!is_array($ids)) {
+            $ids = (array)$ids;
+        }
+        // requete de suppression
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_championnat WHERE ID IN (" . implode(',', $ids) . ");");
+
+    }
+
+
+
+    public function update_championnat($ids)
+    {
+        global $wpdb;
+        echo "koukoukouk";
+
+        // $wpdb->query("UPDATE {$wpdb->prefix}pp_club SET nom = '', prenom = '', email='', telephone='', fidelite =''");
+    }
+
 }

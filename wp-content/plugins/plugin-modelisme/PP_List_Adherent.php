@@ -8,7 +8,7 @@ if(!class_exists('WP_List_Table')){
 }
 
 // on importe notre class PP_database_service
-require_once plugin_dir_path(__FILE__) . '/service/pp_database_service_adherent.php';
+require_once plugin_dir_path(__FILE__) . '/service/pp_database_service.php';
 
 class PP_List_Adherent extends WP_List_Table
 {
@@ -21,7 +21,7 @@ class PP_List_Adherent extends WP_List_Table
             'plural' => __('Adherents'),
         ]);
 
-        $this->dal = new PP_database_service_adherent();
+        $this->dal = new PP_database_service();
     }
 
     // on va préparer notre liste
