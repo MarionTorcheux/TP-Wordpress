@@ -62,7 +62,7 @@ class PP_Adherent
     public function mes_adherents()
     {
         // on doit instancier la classe PP_database_service
-        $db = new PP_database_service_adherent();
+        $db = new pp_database_service();
         // on récupère le titre de la page
         echo "<h2> " . get_admin_page_title() . " </h2>";
 
