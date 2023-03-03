@@ -8,20 +8,20 @@ if(!class_exists('WP_List_Table')){
 }
 
 // on importe notre class PP_database_service
-require_once plugin_dir_path(__FILE__) . '/service/pp_database_service.php';
+require_once plugin_dir_path(__FILE__) . '/service/pp_database_service_adherent.php';
 
-class PP_List_Club extends WP_List_Table
+class PP_List_Adherent extends WP_List_Table
 {
     private $dal;
     // on a surchargé le constructeur
     public function __construct($args = array())
     {
         parent::__construct([
-            'singular' => __('Club'),
-            'plural' => __('Clubs'),
+            'singular' => __('Adherent'),
+            'plural' => __('Adherents'),
         ]);
 
-        $this->dal = new PP_database_service();
+        $this->dal = new PP_database_service_adherent();
     }
 
     // on va préparer notre liste
@@ -34,11 +34,11 @@ class PP_List_Club extends WP_List_Table
 
         // pagination
         // pour afficher un nbr de résultat par page
-        $perPage = $this->get_items_per_page('club_per_page', 10);
+        $perPage = $this->get_items_per_page('adherent_per_page', 10);
         $currentPage = $this->get_pagenum(); // permet de savoir sur quelle page on est
 
         // on traite les données
-        $data = $this->dal->findAllClubs(); // pour récupérer les infos de la bdd
+        $data = $this->dal->findAllAdherents(); // pour récupérer les infos de la bdd
 
         $totalPage = count($data) ; // pour savoir le nbr de lignes de $data
 
@@ -68,11 +68,12 @@ class PP_List_Club extends WP_List_Table
           'cb' => "<input type ='checkbox'/>",
           'ID' => 'id',
           'nom' => 'Nom',
-          'adresse' => 'Adresse',
+          'prenom' => 'Prénom',
           'email' => 'Email',
           'telephone' => 'Téléphone',
-          'domaine' => 'Domaine',
-          'is_championnat' => 'Championnat',
+          'adresse' => 'Adresse',
+          'numero_adherent' => 'N° Licence',
+          'club_ID' => 'Club',
       ];
 
       return $columns;
@@ -93,7 +94,7 @@ class PP_List_Club extends WP_List_Table
     {
         //si on passe un paramètre de tri dans l'url, on le traite
         // sinon par défaut on trie par l'id
-        $orderBy = (!empty($_GET['orderby'])) ? $_GET['orderby'] : 'id';
+        $orderBy = (!empty($_GET['orderby'])) ? $_GET['orderby'] : 'ID';
         // idem pour l'ordre de tri
         $order = (!empty($_GET['order'])) ? $_GET['order'] : 'desc';
         // on crée la mécanique
@@ -108,11 +109,12 @@ class PP_List_Club extends WP_List_Table
        switch ($column_name){
            case 'ID' :
            case 'nom' :
-           case 'adresse' :
+           case 'prenom' :
            case 'email' :
            case 'telephone' :
-           case 'domaine' :
-           case 'is_championnat' :
+           case 'adresse' :
+           case 'numero_adherent' :
+           case 'club_ID' :
                return $item->$column_name;
                break;
            default :
@@ -126,8 +128,7 @@ class PP_List_Club extends WP_List_Table
         $sortable = [
             'ID' => array('ID',true),
             'nom' => array('nom',true),
-            'domaine' => array('domaine',true),
-            'is_championnat' => array('is_championnat',true),
+            'club_ID' => array('club_ID',true),
         ];
         return $sortable;
 
@@ -142,15 +143,15 @@ class PP_List_Club extends WP_List_Table
 
             // retourner une checkbox pour chaque élément du tableau
         return sprintf(
-            "<input type='checkbox' name='delete-club[]' value='%s' />", $item['ID']
+            "<input type='checkbox' name='delete-adherent[]' value='%s' />", $item['ID']
         );
     }
 
     public function get_bulk_actions()
     {
         return array(
-            'delete-club' => __('Delete'),
-            'update-club' => __('Update')
+            'delete-adherent' => __('Delete'),
+            'update-adherent' => __('Update')
         );
     }
 

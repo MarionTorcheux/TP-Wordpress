@@ -1,6 +1,6 @@
 <?php
 
-class PP_database_service
+class PP_database_service_adherent
 {
     public function __construct()
     {
@@ -29,7 +29,7 @@ class PP_database_service
 
         if ($count_adherent == 0)
         {
-            $wpdb->query(" INSERT INTO {$wpdb->prefix}pp_adherent (nom, prenom, email, telephone, adresse, numero_adherent, club_ID) VALUES ('Fripouille', 'Cyrielle', 'cyrielle@gmail.com', '0468957845', '47 avenue des fripouilles','01213115861',2), ('LaGalette', 'Marion', 'bagnole@gmail.com', '0645987453','19 av jules','056546541',1),    ('laGalette', 'Jaime', 'eau@gmail.com', '0698778954','45 rue des hiboux','0546545614',3), ('deLaFontaine', 'Jean', 'vavite@gmail.com', '0696987854','89 avenue des vaches','02455565',1);");
+            $wpdb->query(" INSERT INTO {$wpdb->prefix}pp_adherent (nom, prenom, email, telephone, adresse, numero_adherent, club_ID) VALUES ('Fripouille', 'Cyrielle', 'cyrielle@gmail.com', '0468957845', '47 avenue des fripouilles','01213115861',2), ('LaGalette', 'Marion', 'bagnole@gmail.com', '0645987453','19 av jules','056546541',1),    ('LaGalette', 'Jaime', 'eau@gmail.com', '0698778954','45 rue des hiboux','0546545614',3), ('deLaFontaine', 'Jean', 'vavite@gmail.com', '0696987854','89 avenue des vaches','02455565',1);");
 
         }
 
@@ -61,7 +61,7 @@ class PP_database_service
     public function empty_db()
     {
         global $wpdb;
-        $wpdb->query("TRUNCATE {$wpdb->prefix}pp_club;");
+        $wpdb->query("TRUNCATE {$wpdb->prefix}pp_adherent;");
     }
 
 
@@ -69,42 +69,43 @@ class PP_database_service
     public function delete_db()
     {
         global $wpdb;
-        $wpdb->query("DROP TABLE {$wpdb->prefix}pp_club;");
+        $wpdb->query("DROP TABLE {$wpdb->prefix}pp_adherent;");
     }
 
 
     //requete pour récuprérer la liste des clubs
-    public function findAllClubs()
+    public function findAllAdherents()
     {
         global $wpdb;
-        $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}pp_club;");
+        $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}pp_adherent;");
         return $result;
     }
 
-    public function save_club()
+    public function save_adherent()
     {
         global $wpdb;
         //on récupère les données envoyées par le formulaire
         $valeurs = [
             'nom' => $_POST['nom'],
-            'adresse' => $_POST['adresse'],
+            'prenom' => $_POST['prenom'],
             'email' => $_POST['email'],
             'telephone' => $_POST['telephone'],
-            'domaine' => $_POST['domaine'],
-            'is_championnat' => $_POST['is_championnat'],
+            'adresse' => $_POST['adresse'],
+            'numero_adherent' => $_POST['numero_adherent'],
+            'club_ID' => $_POST['club_id'],
 
         ];
 
         //on vérifie que le club n'existe pas dans la bdd
-        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_club WHERE email = '{$valeurs['email']}'; ");
+        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_adherent WHERE email = '{$valeurs['email']}'; ");
         if (is_null($row)) {
-            // si le club n'existe pas on peut l'insérer
-            $wpdb->insert("{$wpdb->prefix}pp_club", $valeurs);
+            // si l'adherent n'existe pas on peut l'insérer
+            $wpdb->insert("{$wpdb->prefix}pp_adherent", $valeurs);
         }
     }
 
     // requete pour supprimer un club
-    public function delete_club($ids)
+    public function delete_adherent($ids)
     {
 
 
@@ -116,11 +117,11 @@ class PP_database_service
             $ids = (array)$ids;
         }
         // requete de suppression
-        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_club WHERE ID IN (" . implode(',', $ids) . ");");
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_adherent WHERE ID IN (" . implode(',', $ids) . ");");
 
     }
 
-    public function update_club($ids)
+    public function update_adherent($ids)
     {
         global $wpdb;
         echo "koukoukouk";
