@@ -1,0 +1,68 @@
+2023-03-02T08:22:38+00:00 CRITICAL Uncaught Error: Call to a member function get_type() on string in /app/wp-content/plugins/woocommerce/includes/wc-template-functions.php:1355
+Stack trace:
+#0 /app/wp-includes/class-wp-hook.php(308): woocommerce_template_loop_add_to_cart('')
+#1 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#2 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /app/wp-content/themes/theme-modelisme/single.php(25): do_action('woocommerce_aft...')
+#4 /app/wp-includes/template-loader.php(106): include('/app/wp-content...')
+#5 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#6 /app/index.php(17): require('/app/wp-blog-he...')
+#7 {main}
+  thrown dans /app/wp-content/plugins/woocommerce/includes/wc-template-functions.php à la ligne 1355
+
+2023-03-02T08:27:21+00:00 CRITICAL Uncaught Error: Call to a member function get_price_html() on string in /app/wp-content/themes/theme-modelisme/single.php:48
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 48
+
+2023-03-02T11:12:22+00:00 CRITICAL Uncaught Error: Class 'PP_Random_Photo_Widget' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('PP_Random_Photo...')
+#1 /app/wp-content/plugins/plugin-modelisme/pluginpp.php(172): register_widget('PP_Random_Photo...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin-ajax.php(22): require_once('/app/wp-load.p dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-02T11:12:23+00:00 CRITICAL Uncaught Error: Class 'PP_Random_Photo_Widget' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('PP_Random_Photo...')
+#1 /app/wp-content/plugins/plugin-modelisme/pluginpp.php(172): register_widget('PP_Random_Photo...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/wp-load.ph...' dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-02T12:32:36+00:00 CRITICAL Uncaught Error: Class 'PP_Random_Photo_Widget' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('PP_Random_Photo...')
+#1 /app/wp-content/plugins/plugin-modelisme/pluginpp.php(172): register_widget('PP_Random_Photo...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/wp-load.ph...' dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
