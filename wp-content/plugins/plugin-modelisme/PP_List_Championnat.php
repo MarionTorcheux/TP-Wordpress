@@ -3,8 +3,8 @@
 // pour y remédier, on changera la classe manuellement
 
 
-if(!class_exists('WP_List_Table')){
-    require_once (ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
+if (!class_exists('WP_List_Table')) {
+    require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 // on importe notre class PP_database_service
@@ -13,6 +13,7 @@ require_once plugin_dir_path(__FILE__) . '/service/pp_database_service.php';
 class PP_List_Championnat extends WP_List_Table
 {
     private $dal;
+
     // on a surchargé le constructeur
     public function __construct($args = array())
     {
@@ -41,13 +42,12 @@ class PP_List_Championnat extends WP_List_Table
         $data = $this->dal->findAllChampionnats(); // pour récupérer les infos de la bdd
 
 
-
-        $totalPage = count($data) ; // pour savoir le nbr de lignes de $data
+        $totalPage = count($data); // pour savoir le nbr de lignes de $data
 
         // on traite le tri
         usort($data, array(&$this, 'usort_reorder')); // &this => pour faire référence à notre classe
 
-        $paginationData = array_slice($data, (($currentPage - 1 )* $perPage), $perPage);
+        $paginationData = array_slice($data, (($currentPage - 1) * $perPage), $perPage);
 
         // on redéfinit les valeurs de la pagination
         $this->set_pagination_args([
@@ -66,15 +66,15 @@ class PP_List_Championnat extends WP_List_Table
     // on va surcharger la fonction get_column
     public function get_columns(): array
     {
-      $columns = [
-          'cb' => "<input type ='checkbox'/>",
-          'ID' => 'id',
-          'nom' => 'Nom',
-          'libelle' => 'Catégorie',
+        $columns = [
+            'cb' => "<input type ='checkbox'/>",
+            'ID' => 'id',
+            'nom' => 'Nom',
+            'libelle' => 'Catégorie',
 
-      ];
+        ];
 
-      return $columns;
+        return $columns;
     }
 
 
@@ -104,24 +104,24 @@ class PP_List_Championnat extends WP_List_Table
     // permet de remplir le nom des colonnes par défaut
     public function column_default($item, $column_name)
     {
-       switch ($column_name){
-           case 'ID' :
-           case 'nom' :
-           case 'libelle' :
-               return $item->$column_name;
-               break;
-           default :
-               return print_r($item, true);
-       }
+        switch ($column_name) {
+            case 'ID' :
+            case 'nom' :
+            case 'libelle' :
+                return $item->$column_name;
+                break;
+            default :
+                return print_r($item, true);
+        }
     }
 
     //permet d'affilier les colonnes que l'on souhaite trier
     public function get_sortable_columns()
     {
         $sortable = [
-            'ID' => array('ID',true),
-            'nom' => array('nom',true),
-            'libelle' => array('libelle',true),
+            'ID' => array('ID', true),
+            'nom' => array('nom', true),
+            'libelle' => array('libelle', true),
         ];
         return $sortable;
 
@@ -131,10 +131,10 @@ class PP_List_Championnat extends WP_List_Table
     public function column_cb($item)
     {       // convertir l'élément en tableau
 
-            $item = (array)$item;
+        $item = (array)$item;
 
 
-            // retourner une checkbox pour chaque élément du tableau
+        // retourner une checkbox pour chaque élément du tableau
         return sprintf(
             "<input type='checkbox' name='delete-championnat[]' value='%s' />", $item['ID']
         );
@@ -147,8 +147,6 @@ class PP_List_Championnat extends WP_List_Table
             'update-championnat' => __('Update')
         );
     }
-
-
 
 
 }

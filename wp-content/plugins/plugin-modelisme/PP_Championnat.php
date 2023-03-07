@@ -30,6 +30,7 @@ class PP_Championnat
         add_action('admin_menu', array($this, 'add_menu_championnat'));
 
     }
+
     //creation du menu adherent dans le bo
     public function add_menu_championnat()
     {
@@ -107,8 +108,8 @@ class PP_Championnat
                 </div>
 
                 <div>
-                <label for="">Catégorie</label>
-                <input type="text" id="categorie" name="categorie" class="widefat" required>
+                    <label for="">Catégorie</label>
+                    <input type="text" id="categorie" name="categorie" class="widefat" required>
                 </div>
 
 
@@ -125,7 +126,6 @@ class PP_Championnat
 
 
     }
-
 
 
 }

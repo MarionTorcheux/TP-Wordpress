@@ -13,6 +13,7 @@ Tags: bootstrap, html, css, php
     outline: 0;
     padding: 0;
     list-style: none;
+    opacity: 1 !important;
 
 }
 
@@ -28,6 +29,13 @@ header img{
     width:50%;
 
 }
+
+h4{
+    font-size:28px;
+    font-family: 'Pacifico', cursive;
+    color:white;
+}
+
 
 
 .menu-top a{
@@ -117,6 +125,8 @@ footer h4{
 
 }
 
+
+
 .p-footer{
     text-align: justify;
     font-size:14px;
@@ -154,12 +164,6 @@ footer h4{
     font-size: 15px;
 }
 
-.title-product{
-    background-color:#2aacc8;
-    color:white;
-    text-align: left;
-
-}
 
 .blog-post-title{
     font-size:28px;
@@ -210,4 +214,33 @@ footer h4{
 
 .woocommerce-LoopProduct-link{
     text-decoration: none;
+}
+
+
+.entry-title{
+    background-color:#2aacc8;
+    color:white;
+    text-align: left;
+    font-size : 35px;
+}
+
+
+.related{
+    display:none;
+}
+
+
+
+.content-classement{
+    border : 1px solid white;
+}
+
+.content-classement:hover{
+    background-color: #4ac6dc;
+}
+
+.widget-title{
+    text-align: center;
+    color:white;
+    margin-top:10px;
 }

@@ -1,0 +1,207 @@
+2023-03-06T07:42:56+00:00 CRITICAL Uncaught Error: Call to a member function get_price() on string in /app/wp-content/themes/theme-modelisme/single.php:22
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 22
+
+2023-03-06T07:43:10+00:00 CRITICAL Uncaught Error: Call to a member function get_price() on string in /app/wp-content/themes/theme-modelisme/single.php:22
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 22
+
+2023-03-06T07:47:09+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Product_Simple::get_excerpt() in /app/wp-content/themes/theme-modelisme/single.php:27
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 27
+
+2023-03-06T07:48:50+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Product_Simple::get_excerpt() in /app/wp-content/themes/theme-modelisme/single.php:11
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 11
+
+2023-03-06T08:06:56+00:00 CRITICAL Uncaught Error: Call to undefined function get_image() in /app/wp-content/themes/theme-modelisme/single.php:41
+Stack trace:
+#0 /app/wp-includes/template-loader.php(106): include()
+#1 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#2 /app/index.php(17): require('/app/wp-blog-he...')
+#3 {main}
+  thrown dans /app/wp-content/themes/theme-modelisme/single.php à la ligne 41
+
+2023-03-06T10:57:48+00:00 CRITICAL Uncaught Error: Class 'widget\Classement' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('widget\\Classeme...')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('widget\\Classeme...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin-ajax.php(22): require_once('/app dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T10:57:49+00:00 CRITICAL Uncaught Error: Class 'widget\Classement' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('widget\\Classeme...')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('widget\\Classeme...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/wp-l dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T10:58:42+00:00 CRITICAL Uncaught Error: Class 'widget/Classement.php' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('widget/Classeme...')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('widget/Classeme...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/wp dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T11:00:11+00:00 CRITICAL Uncaught Error: Class 'widget\Classement.php' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('widget\\Classeme...')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('widget\\Classeme...')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/ dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T11:00:41+00:00 CRITICAL Uncaught Error: Class 'Classement.php' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('Classement.php')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('Classement.php')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin.php(34): require_once('/app/wp-load.ph...')
+# dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T11:10:42+00:00 CRITICAL Uncaught Error: Class 'Classement' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('Classement')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('Classement')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-blog-header.php(13): require_once('/app/wp-load.ph...')
+#13 /app/inde dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T11:11:03+00:00 CRITICAL Uncaught Error: Class 'Classement' not found in /app/wp-includes/class-wp-widget-factory.php:62
+Stack trace:
+#0 /app/wp-includes/widgets.php(115): WP_Widget_Factory->register('Classement')
+#1 /app/wp-content/plugins/plugin-modelisme/PP_Modelisme.php(33): register_widget('Classement')
+#2 /app/wp-includes/class-wp-hook.php(308): PP_Modelisme->{closure}('')
+#3 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#4 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /app/wp-includes/widgets.php(1854): do_action('widgets_init')
+#6 /app/wp-includes/class-wp-hook.php(308): wp_widgets_init('')
+#7 /app/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 /app/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#9 /app/wp-settings.php(617): do_action('init')
+#10 /app/wp-config.php(102): require_once('/app/wp-setting...')
+#11 /app/wp-load.php(50): require_once('/app/wp-config....')
+#12 /app/wp-admin/admin-ajax.php(22): require_once('/app/wp-load.ph...')
+#13 {mai dans /app/wp-includes/class-wp-widget-factory.php à la ligne 62
+
+2023-03-06T14:38:57+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /app/wp-content/plugins/plugin-modelisme/widget/Classement.php:46
+Stack trace:
+#0 /app/wp-includes/class-wp-widget.php(394): widget\Classement->widget(Array, Array)
+#1 /app/wp-includes/widgets.php(2022): WP_Widget->display_callback(Array, Array)
+#2 /app/wp-includes/rest-api/endpoints/class-wp-rest-widgets-controller.php(697): wp_render_widget('classement-2', 'new-widget-area')
+#3 /app/wp-includes/rest-api/endpoints/class-wp-rest-widgets-controller.php(154): WP_REST_Widgets_Controller->prepare_item_for_response(Array, Object(WP_REST_Request))
+#4 /app/wp-includes/rest-api/class-wp-rest-server.php(1171): WP_REST_Widgets_Controller->get_items(Object(WP_REST_Request))
+#5 /app/wp-includes/rest-api/class-wp-rest-server.php(1018): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/widgets', Array, NULL)
+#6 /app/wp-includes/rest-api.php(535): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /app/wp-includes/rest-api.php(2884): rest_do_ dans /app/wp-content/plugins/plugin-modelisme/widget/Classement.php à la ligne 46
+
+2023-03-06T14:40:43+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /app/wp-content/plugins/plugin-modelisme/widget/Classement.php:47
+Stack trace:
+#0 /app/wp-includes/class-wp-widget.php(394): widget\Classement->widget(Array, Array)
+#1 /app/wp-includes/widgets.php(2022): WP_Widget->display_callback(Array, Array)
+#2 /app/wp-includes/rest-api/endpoints/class-wp-rest-widgets-controller.php(697): wp_render_widget('classement-2', 'new-widget-area')
+#3 /app/wp-includes/rest-api/endpoints/class-wp-rest-widgets-controller.php(154): WP_REST_Widgets_Controller->prepare_item_for_response(Array, Object(WP_REST_Request))
+#4 /app/wp-includes/rest-api/class-wp-rest-server.php(1171): WP_REST_Widgets_Controller->get_items(Object(WP_REST_Request))
+#5 /app/wp-includes/rest-api/class-wp-rest-server.php(1018): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/widgets', Array, NULL)
+#6 /app/wp-includes/rest-api.php(535): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /app/wp-includes/rest-api.php(2 dans /app/wp-content/plugins/plugin-modelisme/widget/Classement.php à la ligne 47
+
+2023-03-06T14:47:01+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /app/wp-content/plugins/plugin-modelisme/widget/Classement.php:47
+Stack trace:
+#0 /app/wp-includes/class-wp-widget.php(394): widget\Classement->widget(Array, Array)
+#1 /app/wp-includes/widgets.php(835): WP_Widget->display_callback(Array, Array)
+#2 /app/wp-content/themes/theme-modelisme/sidebar.php(11): dynamic_sidebar('new-widget-area')
+#3 /app/wp-includes/template.php(783): require_once('/app/wp-content...')
+#4 /app/wp-includes/template.php(718): load_template('/app/wp-content...', true, Array)
+#5 /app/wp-includes/general-template.php(136): locate_template(Array, true, true, Array)
+#6 /app/wp-content/themes/theme-modelisme/page.php(23): get_sidebar()
+#7 /app/wp-includes/template-loader.php(106): include('/app/wp-content...')
+#8 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#9 /app/index.php(17): require('/app/wp-blog-he...')
+#10 {main}
+  thrown dans /app/wp-content/plugins/plugin-modelisme/widget/Classement.php à la ligne 47
+
+2023-03-06T14:53:09+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /app/wp-content/plugins/plugin-modelisme/widget/Classement.php:46
+Stack trace:
+#0 /app/wp-includes/class-wp-widget.php(394): widget\Classement->widget(Array, Array)
+#1 /app/wp-includes/widgets.php(835): WP_Widget->display_callback(Array, Array)
+#2 /app/wp-content/themes/theme-modelisme/sidebar.php(11): dynamic_sidebar('new-widget-area')
+#3 /app/wp-includes/template.php(783): require_once('/app/wp-content...')
+#4 /app/wp-includes/template.php(718): load_template('/app/wp-content...', true, Array)
+#5 /app/wp-includes/general-template.php(136): locate_template(Array, true, true, Array)
+#6 /app/wp-content/themes/theme-modelisme/page.php(23): get_sidebar()
+#7 /app/wp-includes/template-loader.php(106): include('/app/wp-content...')
+#8 /app/wp-blog-header.php(19): require_once('/app/wp-include...')
+#9 /app/index.php(17): require('/app/wp-blog-he...')
+#10 {main}
+  thrown dans /app/wp-content/plugins/plugin-modelisme/widget/Classement.php à la ligne 46
+

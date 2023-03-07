@@ -30,6 +30,7 @@ class PP_Adherent
         add_action('admin_menu', array($this, 'add_menu_adherent'));
 
     }
+
     //creation du menu adherent dans le bo
     public function add_menu_adherent()
     {
@@ -107,8 +108,8 @@ class PP_Adherent
                 </div>
 
                 <div>
-                <label for="">Prénom</label>
-                <input type="text" id="prenom" name="prenom" class="widefat" required>
+                    <label for="">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" class="widefat" required>
                 </div>
 
 
@@ -141,8 +142,6 @@ class PP_Adherent
                 </div>
 
 
-
-
                 <div>
                     <button type="submit">Envoyer</button>
                 </div>
@@ -156,7 +155,6 @@ class PP_Adherent
 
 
     }
-
 
 
 }

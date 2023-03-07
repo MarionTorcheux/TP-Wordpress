@@ -13,6 +13,7 @@ require_once plugin_dir_path(__FILE__) . "/service/pp_database_service.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Club.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Adherent.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Championnat.php";
+require_once plugin_dir_path(__FILE__) . "widget/Classement.php";
 
 //création de la class du plugin
 class PP_Modelisme
@@ -27,6 +28,10 @@ class PP_Modelisme
         register_deactivation_hook(__FILE__, array('pp_database_service', 'empty_db'));
         // à la supression du plugin, on supprime la table
         // register_uninstall_hook(__FILE__,array('pp_database_service', 'delete_db'));
+
+        add_action('widgets_init', function () {
+            register_widget('widget\Classement');
+        });
 
 
         // enregistrement du nouveau menu
@@ -62,7 +67,8 @@ class PP_Modelisme
         );
 
     }
-        public function add_menu_adherent()
+
+    public function add_menu_adherent()
     {
         add_menu_page(
             'Les adhérents PP',
@@ -88,7 +94,6 @@ class PP_Modelisme
 
 
     }
-
 
 
     public function add_menu_championnat()
@@ -117,8 +122,6 @@ class PP_Modelisme
 
 
     }
-
-
 
 
     //on créee la méthode mes_clients()
@@ -295,8 +298,6 @@ class PP_Modelisme
                 </div>
 
 
-
-
                 <div>
                     <button type="submit">Envoyer</button>
                 </div>
@@ -310,7 +311,6 @@ class PP_Modelisme
 
 
     }
-
 
 
     public function mes_championnats()
@@ -373,15 +373,9 @@ class PP_Modelisme
 
             </form>
 
-
             <?php
         }
-
-
     }
-
-
-
 }
 
 new PP_Modelisme(); // on instancie la classe

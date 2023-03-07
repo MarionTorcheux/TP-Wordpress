@@ -24,33 +24,27 @@ class PP_database_service
         if ($count_club == 0)
         {
             $wpdb->query("INSERT INTO {$wpdb->prefix}pp_club (nom, adresse, email, telephone, domaine, is_championnat) VALUES ('LesFripouillesVolantes', '17 rue des fripouilles', 'f@gmail.com', '0468957845', 'voiture',0),    ('AiméeLaVoiture', '16 rue des bagnoles', 'bagnole@gmail.com', '0645987453','drone',1),    ('beauBateau', '56 rue sur l\'eau', 'eau@gmail.com', '0698778954','voiture',1),    ('Farfelus', '70 rue des lacs', 'vavite@gmail.com', '0696987854','drone',1);");
-
         }
 
         if ($count_adherent == 0)
         {
             $wpdb->query(" INSERT INTO {$wpdb->prefix}pp_adherent (nom, prenom, email, telephone, adresse, numero_adherent, club_ID) VALUES ('Fripouille', 'Cyrielle', 'cyrielle@gmail.com', '0468957845', '47 avenue des fripouilles','01213115861',2), ('LaGalette', 'Marion', 'bagnole@gmail.com', '0645987453','19 av jules','056546541',1),    ('laGalette', 'Jaime', 'eau@gmail.com', '0698778954','45 rue des hiboux','0546545614',3), ('deLaFontaine', 'Jean', 'vavite@gmail.com', '0696987854','89 avenue des vaches','02455565',1);");
-
         }
 
         if ($count_categorie == 0)
         {
             $wpdb->query("INSERT INTO {$wpdb->prefix}pp_categorie_championnat (libelle) VALUES ('Automobile'),('Drone 3 rotors'),('Drone 4 rotors');");
-
         }
 
         if ($count_championnat == 0)
         {
             $wpdb->query("INSERT INTO {$wpdb->prefix}pp_championnat (nom, categorie_championnat_ID) VALUES ('Les fous du volant',1),('Les pneus creuvés',1),('La route sans nid de poule',1),('L\'enjoliveur doré',1),('La tête dans le guidon',1),('Le drone de la drome',2),('Course aux drones',2),('Drop ton drone',2),('Mon drone c\'est le plus beau',3), ('L\'île aux drones',3), ('Le drone joyeux',3);");
-
         }
 
         if ($count_championnat_adherent == 0)
         {
             $wpdb->query("INSERT INTO {$wpdb->prefix}pp_championnat_adherent (adherent_ID, championnat_ID, position)VALUES (1,11,1), (2,1,3), (3,10,6), (4,10,1), (1,1,2);");
-
         }
-
 
     }
 
@@ -139,6 +133,13 @@ class PP_database_service
         return $result;
     }
 
+    public function topTrois(){
+        global $wpdb;
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_adherent.nom AS nomAdherent, {$wpdb->prefix}pp_adherent.prenom, {$wpdb->prefix}pp_championnat_adherent.position, {$wpdb->prefix}pp_championnat.nom, {$wpdb->prefix}pp_categorie_championnat.libelle FROM {$wpdb->prefix}pp_adherent INNER JOIN {$wpdb->prefix}pp_championnat_adherent ON {$wpdb->prefix}pp_championnat_adherent.adherent_ID = {$wpdb->prefix}pp_adherent.ID INNER JOIN {$wpdb->prefix}pp_championnat ON {$wpdb->prefix}pp_championnat.ID = {$wpdb->prefix}pp_championnat_adherent.championnat_ID INNER JOIN {$wpdb->prefix}pp_categorie_championnat ON {$wpdb->prefix}pp_categorie_championnat.ID = {$wpdb->prefix}pp_championnat.categorie_championnat_ID WHERE {$wpdb->prefix}pp_championnat_adherent.position BETWEEN 1 AND 3 ORDER BY {$wpdb->prefix}pp_categorie_championnat.ID");
+        return $result;
+    }
+
+
     public function save_adherent()
     {
         global $wpdb;
@@ -178,7 +179,6 @@ class PP_database_service
         $wpdb->query("DELETE FROM {$wpdb->prefix}pp_adherent WHERE ID IN (" . implode(',', $ids) . ");");
 
     }
-
 
 
 

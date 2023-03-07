@@ -1,7 +1,7 @@
 <div class="col-sm-3 offset-sm-1 blog-sidebar border sidebar-content">
     <div class="sidebar-module">
 
-    <h3 class="titre-sidebar"> Résultats et classements </h3>
+
 
 
 
