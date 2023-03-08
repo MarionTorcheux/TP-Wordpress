@@ -97,80 +97,11 @@ main{
 }
 
 
-footer{
-    background-color: #e8ebf1;
-    border-top:1px solid #d9d9d9;
-    padding-right: 200px;
-    padding-left : 200px;
-    padding-bottom:15px;
-}
-
-footer a{
-    color:black;
-    text-decoration: none;
-
-    margin-bottom:20px;
-    font-size: 15px;
-}
-
-footer a:hover{
-    color: #2aacc8;
-}
-
-footer h4{
-
-    font-size:28px;
-    font-family: 'Pacifico', cursive;
-    color:#2aacc8;
-
-}
-
-
-
-.p-footer{
-    text-align: justify;
-    font-size:14px;
-}
-
-.menu-footer{
-    color:black;
-}
-
-.separator{
-    height:150px;
-    border: 1px solid #c0bebe;
-}
-
-.para-f{
-
-    width:380px;
-}
-
-.social i{
-    font-size:70px;
-    margin-right:15px;
-}
-
-.social i:hover{
-    color:#2aacc8;
-}
-
-.social p{
-    text-align: center;
-}
-
-.bottom-footer{
-    text-align: center;
-    font-size: 15px;
-}
-
-
 .blog-post-title{
     font-size:28px;
     font-family: 'Pacifico', cursive;
     color:#2aacc8;
 }
-
 
 .woocommerce-loop-product__title{
     color:black;
@@ -184,8 +115,6 @@ footer h4{
     padding:10px;
 
 }
-
-
 
 .products{
     display:flex;
@@ -211,7 +140,6 @@ footer h4{
 
 }
 
-
 .woocommerce-LoopProduct-link{
     text-decoration: none;
 }
@@ -230,7 +158,6 @@ footer h4{
 }
 
 
-
 .content-classement{
     border : 1px solid white;
 }
@@ -243,4 +170,72 @@ footer h4{
     text-align: center;
     color:white;
     margin-top:10px;
+}
+
+
+
+
+
+/* ********************* FOOTER ****************   */
+
+footer{
+    background-color: #e8ebf1;
+    border-top:1px solid #d9d9d9;
+    padding-right: 200px;
+    padding-left : 200px;
+    padding-bottom:15px;
+}
+
+footer a{
+    color:black;
+    text-decoration: none;
+    margin-bottom:20px;
+    font-size: 15px;
+}
+
+footer a:hover{
+    color: #2aacc8;
+}
+
+footer h4 {
+    font-size: 28px;
+    font-family: 'Pacifico', cursive;
+    color: #2aacc8;
+}
+
+
+.p-footer{
+    text-align: justify;
+    font-size:14px;
+}
+
+.menu-footer{
+    color:black;
+}
+
+.separator{
+    height:150px;
+    border: 1px solid #c0bebe;
+}
+
+.para-f{
+    width:380px;
+}
+
+.social i{
+    font-size:70px;
+    margin-right:15px;
+}
+
+.social i:hover{
+    color:#2aacc8;
+}
+
+.social p{
+    text-align: center;
+}
+
+.bottom-footer{
+    text-align: center;
+    font-size: 15px;
 }
