@@ -246,4 +246,58 @@ class PP_database_service
         // $wpdb->query("UPDATE {$wpdb->prefix}pp_club SET nom = '', prenom = '', email='', telephone='', fidelite =''");
     }
 
+
+    public function findAllChampionnats_adherent()
+    {
+        global $wpdb;
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_adherent.prenom,
+       {$wpdb->prefix}pp_championnat_adherent.*,
+       {$wpdb->prefix}pp_championnat.nom,
+       {$wpdb->prefix}pp_categorie_championnat.libelle,
+       FROM {$wpdb->prefix}pp_championnat 
+           INNER JOIN {$wpdb->prefix}pp_categorie_championnat 
+               ON {$wpdb->prefix}pp_categorie_championnat.ID = {$wpdb->prefix}pp_championnat.categorie_championnat_ID 
+           INNER JOIN {$wpdb->prefix}pp_championnat_adherent ON {$wpdb->prefix}pp_championnat_adherent.championnat_ID = {$wpdb->prefix}pp_championnat.ID
+           INNER JOIN {$wpdb->prefix}pp_adherent 
+               ON {$wpdb->prefix}pp_adherent.ID = {$wpdb->prefix}pp_championnat_adherent.adherent_ID ;");
+        return $result;
+    }
+
+    public function save_championnat_adherent()
+    {
+        global $wpdb;
+        //on récupère les données envoyées par le formulaire
+        $valeurs = [
+            'nom' => $_POST['nom'],
+            'categorie_championnat_ID' => $_POST['categorie'],
+
+        ];
+
+        var_dump($_POST['categorie']);
+
+        //on vérifie que le championnat n'existe pas dans la bdd
+        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_championnat WHERE nom = '{$valeurs['nom']}'; ");
+        if (is_null($row)) {
+            // si le championnat n'existe pas on peut l'insérer
+            $wpdb->insert("{$wpdb->prefix}pp_championnat", $valeurs);
+        }
+    }
+
+    // requete pour supprimer un club
+    public function delete_championnat_adherent($ids)
+    {
+
+
+        global $wpdb;
+        // on check si IDs sont dans un tableau sinon on le met dedans
+        // il veut que un tableau pour supprimer meme si y a qu'un id
+        // pour avoir la possibilité de supprimer plusieurs clients à la fois
+        if (!is_array($ids)) {
+            $ids = (array)$ids;
+        }
+        // requete de suppression
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_championnat WHERE ID IN (" . implode(',', $ids) . ");");
+
+    }
+
 }

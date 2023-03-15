@@ -13,6 +13,7 @@ require_once plugin_dir_path(__FILE__) . "/service/pp_database_service.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Club.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Adherent.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Championnat.php";
+require_once plugin_dir_path(__FILE__) . "/PP_List_Championnat_Adherent.php";
 require_once plugin_dir_path(__FILE__) . "widget/Classement.php";
 
 //création de la class du plugin
@@ -38,6 +39,7 @@ class PP_Modelisme
         add_action('admin_menu', array($this, 'add_menu_club'));
         add_action('admin_menu', array($this, 'add_menu_adherent'));
         add_action('admin_menu', array($this, 'add_menu_championnat'));
+        add_action('admin_menu', array($this, 'add_menu_championnat_adherent'));
 
     }
 
@@ -122,6 +124,34 @@ class PP_Modelisme
 
 
     }
+
+
+    public function add_menu_championnat_adherent()
+    {
+        add_menu_page(
+            'Championnats-adhérents',
+            'CA',
+            'manage_options',
+            'CA-pp',
+            //l'élément qu'on veut afficher dans la page (rendu)
+            array($this, "mes_championnats_adherents"),
+            'dashicons-groups',
+            40,
+
+        );
+
+        //ajouter un sous menu
+        add_submenu_page(
+            'CA-pp',
+            'Ajouter un championnat-adherent',
+            'Ajouter',
+            'manage_options',
+            'add-ca',
+            array($this, "mes_championnats_adherents")
+        );
+
+    }
+
 
 
     //on créee la méthode mes_clients()
@@ -314,6 +344,71 @@ class PP_Modelisme
 
 
     public function mes_championnats()
+    {
+        // on doit instancier la classe PP_database_service
+        $db = new PP_database_service();
+        // on récupère le titre de la page
+        echo "<h2> " . get_admin_page_title() . " </h2>";
+
+        if ($_REQUEST['page'] == 'championnat-pp' || $_POST['send'] == 'ok' || $_POST['action'] == 'delete-championnat') {
+            // on va mettre une seconde condition if
+            // si on a bien les données du formulaire
+            // on execute la requete d'insertion
+            if (isset($_POST['send']) && $_POST['send'] == 'ok') {
+                $db->save_championnat();
+            }
+            if (isset($_POST['action']) && $_POST['action'] == 'delete-championnat') {
+
+                $db->delete_championnat($_POST['delete-championnat']);
+            }
+
+            if (isset($_POST['action']) && $_POST['action'] == 'update-championnat') {
+
+                $db->update_championnat($_POST['update-championnat']);
+            }
+
+
+            $table = new PP_List_championnat(); // on instancie la class
+            $table->prepare_items(); // on appelle la méthode prépare items
+
+
+            echo "<form action='' method='POST'>";
+            echo $table->display(); // on affiche la table grace à display()
+            echo "</form>";
+
+
+        } else {
+            // on affiche le formulaire
+            ?>
+            <form action="" method="post">
+                <!--               on place un input hidden -->
+                <!--               permet d'envoyer ok lorsqu'on poste le formulaire-->
+                <!--               cette valeur ok servira de flag pour faire du traitement dessus-->
+                <input type="hidden" name="send" value="ok">
+                <div>
+                    <label for="">Nom</label>
+                    <input type="text" id="nom" name="nom" class="widefat" required>
+                </div>
+
+                <div>
+                    <label for="">Catégorie</label>
+                    <input type="text" id="categorie" name="categorie" class="widefat" required>
+                </div>
+
+
+                <div>
+                    <button type="submit">Envoyer</button>
+                </div>
+
+
+            </form>
+
+            <?php
+        }
+    }
+
+
+    public function mes_championnats_adherents()
     {
         // on doit instancier la classe PP_database_service
         $db = new PP_database_service();
