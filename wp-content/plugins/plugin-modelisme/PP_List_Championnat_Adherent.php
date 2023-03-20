@@ -70,8 +70,9 @@ class PP_List_Championnat_Adherent extends WP_List_Table
             'cb' => "<input type ='checkbox'/>",
             'ID' => 'id',
             'position' => 'Position',
-            'adherent_ID' => 'Adhérent',
-            'championnat_ID' => 'Championnat',
+            'nomAdherent' => 'Nom adhérent',
+            'prenom' => 'Prénom adhérent',
+            'nom' => 'Championnat',
 
         ];
 
@@ -107,8 +108,10 @@ class PP_List_Championnat_Adherent extends WP_List_Table
     {
         switch ($column_name) {
             case 'ID' :
-            case 'nom' :
-            case 'libelle' :
+            case 'position':
+            case 'nomAdherent':
+            case 'prenom':
+            case 'nom':
                 return $item->$column_name;
                 break;
             default :

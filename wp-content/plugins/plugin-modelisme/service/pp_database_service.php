@@ -125,7 +125,7 @@ class PP_database_service
 
 
 
-    //requete pour récuprérer la liste des clubs
+    //requete pour récuprérer la liste des adhérents
     public function findAllAdherents()
     {
         global $wpdb;
@@ -181,7 +181,6 @@ class PP_database_service
     }
 
 
-
     public function update_adherent($ids)
     {
         global $wpdb;
@@ -191,7 +190,7 @@ class PP_database_service
     }
 
 
-    //requete pour récuprérer la liste des clubs
+    //requete pour récuprérer la liste des championnats
     public function findAllChampionnats()
     {
         global $wpdb;
@@ -199,8 +198,18 @@ class PP_database_service
         return $result;
     }
 
+    public function findAllCategoriesChampionnat()
+    {
+        global $wpdb;
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_categorie_championnat.* FROM {$wpdb->prefix}pp_categorie_championnat;");
+        return $result;
+    }
+
+
     public function save_championnat()
     {
+        var_dump($_POST);
+
         global $wpdb;
         //on récupère les données envoyées par le formulaire
         $valeurs = [
@@ -209,7 +218,6 @@ class PP_database_service
 
         ];
 
-        var_dump($_POST['categorie']);
 
         //on vérifie que le championnat n'existe pas dans la bdd
         $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_championnat WHERE nom = '{$valeurs['nom']}'; ");
@@ -219,7 +227,7 @@ class PP_database_service
         }
     }
 
-    // requete pour supprimer un club
+    // requete pour supprimer un championnat
     public function delete_championnat($ids)
     {
 
@@ -236,8 +244,6 @@ class PP_database_service
 
     }
 
-
-
     public function update_championnat($ids)
     {
         global $wpdb;
@@ -250,43 +256,29 @@ class PP_database_service
     public function findAllChampionnats_adherent()
     {
         global $wpdb;
-        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_adherent.prenom,
-       {$wpdb->prefix}pp_championnat_adherent.*,
-       {$wpdb->prefix}pp_championnat.nom,
-       {$wpdb->prefix}pp_categorie_championnat.libelle,
-       FROM {$wpdb->prefix}pp_championnat 
-           INNER JOIN {$wpdb->prefix}pp_categorie_championnat 
-               ON {$wpdb->prefix}pp_categorie_championnat.ID = {$wpdb->prefix}pp_championnat.categorie_championnat_ID 
-           INNER JOIN {$wpdb->prefix}pp_championnat_adherent ON {$wpdb->prefix}pp_championnat_adherent.championnat_ID = {$wpdb->prefix}pp_championnat.ID
-           INNER JOIN {$wpdb->prefix}pp_adherent 
-               ON {$wpdb->prefix}pp_adherent.ID = {$wpdb->prefix}pp_championnat_adherent.adherent_ID ;");
+        $result = $wpdb->get_results("SELECT {$wpdb->prefix}pp_championnat_adherent.ID, {$wpdb->prefix}pp_championnat_adherent.position, {$wpdb->prefix}pp_adherent.nom as nomAdherent,{$wpdb->prefix}pp_adherent.prenom, {$wpdb->prefix}pp_championnat.nom FROM {$wpdb->prefix}pp_championnat_adherent INNER JOIN {$wpdb->prefix}pp_adherent ON {$wpdb->prefix}pp_championnat_adherent.adherent_ID = {$wpdb->prefix}pp_adherent.ID INNER JOIN {$wpdb->prefix}pp_championnat ON {$wpdb->prefix}pp_championnat_adherent.championnat_ID = {$wpdb->prefix}pp_championnat.ID   ;");
         return $result;
     }
 
     public function save_championnat_adherent()
     {
+
+
         global $wpdb;
         //on récupère les données envoyées par le formulaire
         $valeurs = [
-            'nom' => $_POST['nom'],
-            'categorie_championnat_ID' => $_POST['categorie'],
+            'position' => $_POST['position'],
+            'adherent_ID' => $_POST['adherent'],
+            'championnat_ID' => $_POST['championnat']
 
         ];
 
-        var_dump($_POST['categorie']);
-
-        //on vérifie que le championnat n'existe pas dans la bdd
-        $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}pp_championnat WHERE nom = '{$valeurs['nom']}'; ");
-        if (is_null($row)) {
-            // si le championnat n'existe pas on peut l'insérer
-            $wpdb->insert("{$wpdb->prefix}pp_championnat", $valeurs);
-        }
+            $wpdb->insert("{$wpdb->prefix}pp_championnat_adherent", $valeurs);
     }
 
-    // requete pour supprimer un club
+    // requete pour supprimer un championnat_adherent
     public function delete_championnat_adherent($ids)
     {
-
 
         global $wpdb;
         // on check si IDs sont dans un tableau sinon on le met dedans
@@ -295,8 +287,9 @@ class PP_database_service
         if (!is_array($ids)) {
             $ids = (array)$ids;
         }
+
         // requete de suppression
-        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_championnat WHERE ID IN (" . implode(',', $ids) . ");");
+        $wpdb->query("DELETE FROM {$wpdb->prefix}pp_championnat_adherent WHERE ID IN (" . implode(',', $ids) . ");");
 
     }
 

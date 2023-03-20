@@ -3,8 +3,8 @@
 
 
 <main>
-    <div class="row">
-        <div class="col-sm-8 bloc-main d-flex flex-row mb-3 flex-wrap ">
+    <div class="row flex-page">
+        <div class="col-sm-8 bloc-main d-flex flex-row mb-3 flex-wrap page-content ">
 
             <!--            Partie pour le contenu principal-->
             <?php
@@ -18,14 +18,14 @@
             ?>
         </div>
 
-<?php
-if (is_page("Qu'est ce que le modélisme ?")){
-        get_sidebar();
-}
+        <?php
+        if (is_page("Qu'est ce que le modélisme ?")){
+            get_sidebar();
+        }
 
 
 
-?>
+        ?>
     </div>
 </main>
 

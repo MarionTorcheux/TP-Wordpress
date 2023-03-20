@@ -6,10 +6,9 @@
  * Version: 0.0.1
  */
 
-
 // on importe le fichier PP_database_service
 require_once plugin_dir_path(__FILE__) . "/service/pp_database_service.php";
-// on importe notre classe PP_List
+// on importe les classes PP_List
 require_once plugin_dir_path(__FILE__) . "/PP_List_Club.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Adherent.php";
 require_once plugin_dir_path(__FILE__) . "/PP_List_Championnat.php";
@@ -19,7 +18,6 @@ require_once plugin_dir_path(__FILE__) . "widget/Classement.php";
 //création de la class du plugin
 class PP_Modelisme
 {
-
 
     public function __construct()
     {
@@ -35,7 +33,7 @@ class PP_Modelisme
         });
 
 
-        // enregistrement du nouveau menu
+        // enregistrement des nouveaux menus
         add_action('admin_menu', array($this, 'add_menu_club'));
         add_action('admin_menu', array($this, 'add_menu_adherent'));
         add_action('admin_menu', array($this, 'add_menu_championnat'));
@@ -43,7 +41,7 @@ class PP_Modelisme
 
     }
 
-    //creation du menu client dans le bo
+    //creation des menus dans le bo
     public function add_menu_club()
     {
         add_menu_page(
@@ -130,12 +128,12 @@ class PP_Modelisme
     {
         add_menu_page(
             'Championnats-adhérents',
-            'CA',
+            'CA-pp',
             'manage_options',
             'CA-pp',
             //l'élément qu'on veut afficher dans la page (rendu)
             array($this, "mes_championnats_adherents"),
-            'dashicons-groups',
+            'dashicons-awards',
             40,
 
         );
@@ -144,7 +142,7 @@ class PP_Modelisme
         add_submenu_page(
             'CA-pp',
             'Ajouter un championnat-adherent',
-            'Ajouter',
+            'Ajouter CA',
             'manage_options',
             'add-ca',
             array($this, "mes_championnats_adherents")
@@ -152,9 +150,7 @@ class PP_Modelisme
 
     }
 
-
-
-    //on créee la méthode mes_clients()
+    //on créee la méthode mes_clubs()
     public function mes_clubs()
     {
         // on doit instancier la classe PP_database_service
@@ -323,8 +319,17 @@ class PP_Modelisme
 
 
                 <div>
-                    <label for="">Club</label>
-                    <input type="text" id="club_id" name="club_id" class="widefat" required>
+                    <?php  $request_club = $db->findAllClubs();
+                    $tabclub = json_decode(json_encode($request_club), true);
+
+                    ?>
+
+                    <select name="club_id" id="club_id">
+                        <option value="">--Club--</option>
+                        <?php  for ($i = 0; $i < count($tabclub); $i++) { ?>
+                            <option value="<?php echo $tabclub[$i]['ID'] ?>"><?php echo  $tabclub[$i]['nom'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
 
@@ -341,7 +346,6 @@ class PP_Modelisme
 
 
     }
-
 
     public function mes_championnats()
     {
@@ -390,10 +394,23 @@ class PP_Modelisme
                     <input type="text" id="nom" name="nom" class="widefat" required>
                 </div>
 
+
+
                 <div>
-                    <label for="">Catégorie</label>
-                    <input type="text" id="categorie" name="categorie" class="widefat" required>
+                    <?php  $request_cc = $db->findAllCategoriesChampionnat();
+                    $tabcc = json_decode(json_encode($request_cc), true);
+
+                    ?>
+
+                    <select name="categorie" id="categorie">
+                        <option value="">--Catégorie championnat--</option>
+                        <?php  for ($i = 0; $i < count($tabcc); $i++) { ?>
+                            <option value="<?php echo $tabcc[$i]['ID'] ?>"><?php echo  $tabcc[$i]['libelle'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
+
+
 
 
                 <div>
@@ -415,25 +432,25 @@ class PP_Modelisme
         // on récupère le titre de la page
         echo "<h2> " . get_admin_page_title() . " </h2>";
 
-        if ($_REQUEST['page'] == 'championnat-pp' || $_POST['send'] == 'ok' || $_POST['action'] == 'delete-championnat') {
+        if ($_REQUEST['page'] == 'CA-pp' || $_POST['send'] == 'ok' || $_POST['action'] == 'delete-championnat-adherent') {
             // on va mettre une seconde condition if
             // si on a bien les données du formulaire
             // on execute la requete d'insertion
             if (isset($_POST['send']) && $_POST['send'] == 'ok') {
-                $db->save_championnat();
+                $db->save_championnat_adherent();
             }
-            if (isset($_POST['action']) && $_POST['action'] == 'delete-championnat') {
+            if (isset($_POST['action']) && $_POST['action'] == 'delete-championnat-adherent') {
 
-                $db->delete_championnat($_POST['delete-championnat']);
-            }
-
-            if (isset($_POST['action']) && $_POST['action'] == 'update-championnat') {
-
-                $db->update_championnat($_POST['update-championnat']);
+                $db->delete_championnat_adherent($_POST['delete-championnat-adherent']);
             }
 
+            if (isset($_POST['action']) && $_POST['action'] == 'update-championnat-adherent') {
 
-            $table = new PP_List_championnat(); // on instancie la class
+                $db->update_championnat($_POST['update-championnat-adherent']);
+            }
+
+
+            $table = new PP_List_Championnat_Adherent(); // on instancie la class
             $table->prepare_items(); // on appelle la méthode prépare items
 
 
@@ -451,14 +468,39 @@ class PP_Modelisme
                 <!--               cette valeur ok servira de flag pour faire du traitement dessus-->
                 <input type="hidden" name="send" value="ok">
                 <div>
-                    <label for="">Nom</label>
-                    <input type="text" id="nom" name="nom" class="widefat" required>
+                    <label for="">Position</label>
+                    <input type="text" id="position" name="position" class="widefat" required>
                 </div>
 
                 <div>
-                    <label for="">Catégorie</label>
-                    <input type="text" id="categorie" name="categorie" class="widefat" required>
+                    <?php  $request_adherent = $db->findAllAdherents();
+                     $taba = json_decode(json_encode($request_adherent), true);
+
+                    ?>
+
+            <select name="adherent" id="adherent">
+            <option value="">--Adhérent--</option>
+                        <?php  for ($i = 0; $i < count($taba); $i++) { ?>
+                        <option value="<?php echo $taba[$i]['ID'] ?>"><?php echo  $taba[$i]['nom'] ?></option>
+                <?php } ?>
+                </select>
                 </div>
+
+                <div>
+                    <?php  $request_championnat = $db->findAllChampionnats();
+                    $tabc = json_decode(json_encode($request_championnat), true);
+
+                    ?>
+
+                    <select name="championnat" id="championnat">
+                        <option value="">--Championnat--</option>
+                        <?php  for ($i = 0; $i < count($tabc); $i++) { ?>
+                            <option value="<?php echo $tabc[$i]['ID'] ?>"><?php echo  $tabc[$i]['nom'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+
 
 
                 <div>
@@ -467,6 +509,7 @@ class PP_Modelisme
 
 
             </form>
+
 
             <?php
         }

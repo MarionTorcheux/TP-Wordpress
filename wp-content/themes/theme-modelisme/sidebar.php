@@ -1,4 +1,4 @@
-<div class="col-sm-3 offset-sm-1 blog-sidebar border sidebar-content">
+<div class="col-sm-3 blog-sidebar border sidebar-content">
     <div class="sidebar-module">
 
 
